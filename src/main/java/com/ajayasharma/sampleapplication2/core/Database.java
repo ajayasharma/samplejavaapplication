@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -21,29 +22,27 @@ public class Database{
     private String dbUser;
     private String dbPassword;
     private Connection connection;
-    private PreparedStatement statement;
-    private ResultSet resultSet;
     
     Database(){
         this.dbDriver = "org.gjt.mm.mysql.Driver";
         this.dbUrl = "jdbc:mysql://localhost/testdb";
         this.dbUser = "root";
         this.dbPassword = "mysql";
-        
     }
     
-    public void connect() throws ClassNotFoundException, SQLException{
+    public Connection connect() throws ClassNotFoundException, SQLException{
         try{
             Class.forName(this.dbDriver);
             this.connection = DriverManager.getConnection(this.dbUrl, this.dbUser, this.dbPassword);
+            return this.connection;
         }
         catch( ClassNotFoundException | SQLException ex ){
             throw ex;
         }
     }
     
-    public void getStatement(String query) {
+    public void disconnect() throws SQLException {
+        this.connection.close();
         
     }
-    
 }
