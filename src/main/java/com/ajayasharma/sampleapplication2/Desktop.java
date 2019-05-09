@@ -74,6 +74,11 @@ public class Desktop extends javax.swing.JFrame {
 
         editMenu.setMnemonic('e');
         editMenu.setText("Edit");
+        editMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editMenuActionPerformed(evt);
+            }
+        });
 
         cutMenuItem.setMnemonic('t');
         cutMenuItem.setText("Cut");
@@ -125,6 +130,19 @@ public class Desktop extends javax.swing.JFrame {
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
+
+    private void editMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editMenuActionPerformed
+        // TODO add your handling code here:
+        StudentEntity student = new StudentEntity();
+        student.setFirstName("John");// enter data from input component over here
+        student.setLastName("Doe");
+        student.setCourseName("BSc");
+
+        Student studentModel = new Student();
+        studentModel.setStudent(student);
+        studentModel.store();
+
+    }//GEN-LAST:event_editMenuActionPerformed
 
     /**
      * @param args the command line arguments
